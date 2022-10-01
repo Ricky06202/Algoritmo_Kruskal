@@ -37,4 +37,18 @@ public class Entrada {
         } 
     }
 
+    public static int opcionMultiple(String mensaje, String titulo, Object[] opciones){
+        int valor = JOptionPane.showOptionDialog(null, mensaje, titulo, 0, 1, null, opciones, null);
+        return valor;
+    }
+
+    public static int opcionSiNo(String mensaje, String titulo){
+        while (true) {
+            int valor = JOptionPane.showOptionDialog(null, mensaje, titulo, 0, 1, null, "Si, No".split(", "), null);
+            if(valor != -1)
+                return valor; // 0 = Si, 1 = No, -1 = Cerrar la ventana
+            Salida.MensajeError("ERROR, DEBE ELEGIR UNA DE LAS OPCIONES", "ERROR OPCION INVALIDA");
+        }
+    }
+
 }
