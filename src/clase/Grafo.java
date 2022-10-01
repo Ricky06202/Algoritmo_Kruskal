@@ -7,7 +7,7 @@ public class Grafo {
     private int aristas;
 
     public grafo(){
-        nodo="";
+        nodo=""; 
         arista=0;
     }
 
