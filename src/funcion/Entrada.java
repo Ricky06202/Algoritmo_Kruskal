@@ -10,7 +10,7 @@ public class Entrada {
             String valString = JOptionPane.showInputDialog(null,texto, titulo, JOptionPane.INFORMATION_MESSAGE);
             if(valString != null && !valString.trim().equals(""))
                 return valString.trim();     
-            Salida.MensajeError("ERROR, NO PUEDE DEJAR EL CAMPO VACIO", "ERROR CAMPO VACIO");
+            Salida.mensajeError("ERROR, NO PUEDE DEJAR EL CAMPO VACIO", "ERROR CAMPO VACIO");
         }
     }
 
@@ -21,7 +21,7 @@ public class Entrada {
             try {
                 return Float.parseFloat(valFloat);     
             } catch (Exception e) {
-                Salida.MensajeError("ERROR, EL NUMERO INGRESADO ES INVALIDO", "ERROR NUMERO INVALIDO");
+                Salida.mensajeError("ERROR, EL NUMERO INGRESADO ES INVALIDO", "ERROR NUMERO INVALIDO");
             }
         } 
     }
@@ -33,7 +33,7 @@ public class Entrada {
             float valFloat = pedirNumero(texto, titulo);
             if(valFloat > 0)
                 return valFloat;
-            Salida.MensajeError("ERROR, EL NUMERO INGRESADO NO ES POSITIVO", "ERROR NUMERO NO POSITIVO"); 
+            Salida.mensajeError("ERROR, EL NUMERO INGRESADO NO ES POSITIVO", "ERROR NUMERO NO POSITIVO"); 
         } 
     }
 
@@ -47,7 +47,7 @@ public class Entrada {
             int valor = JOptionPane.showOptionDialog(null, mensaje, titulo, 0, 1, null, "Si, No".split(", "), null);
             if(valor != -1)
                 return valor; // 0 = Si, 1 = No, -1 = Cerrar la ventana
-            Salida.MensajeError("ERROR, DEBE ELEGIR UNA DE LAS OPCIONES", "ERROR OPCION INVALIDA");
+            Salida.mensajeError("ERROR, DEBE ELEGIR UNA DE LAS OPCIONES", "ERROR OPCION INVALIDA");
         }
     }
 
