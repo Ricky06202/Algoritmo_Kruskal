@@ -4,10 +4,13 @@ import javax.swing.JOptionPane;
 // mediante JOptionPane
 
 public class Salida {
-
-    public static void Mensaje(String Texto, String Titulo)
+    public static void Mensaje(String texto, String titulo)
     {    
-        JOptionPane.showMessageDialog(null,Texto,Titulo,JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null,texto,titulo,JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
+    public static void MensajeError(String texto, String titulo)
+    {    
+        JOptionPane.showMessageDialog(null,texto,titulo,JOptionPane.ERROR_MESSAGE);
+    }
 }
