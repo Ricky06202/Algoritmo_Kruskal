@@ -10,7 +10,7 @@ public class Nodo {
         this.nombre=nombre;
     }
 
-    public int GetNombre(){
+    public String GetNombre(){
         return nombre;
     }
 }
