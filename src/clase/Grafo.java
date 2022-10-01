@@ -1,29 +1,31 @@
 package clase;
 
+import java.util.ArrayList;
+
 // definir las caracteristicas(variables) y sus metodos(funciones)
 
 public class Grafo {
-    private Nodo[] nodos;
-    private Arista[] aristas;
+    private ArrayList<Nodo> nodos;
+    private ArrayList<Arista> aristas;
 
-    public Grafo(Nodo[] nodos, Arista[] aristas) {
+    public Grafo(ArrayList<Nodo>  nodos, ArrayList<Arista> aristas) {
         this.nodos = nodos;
         this.aristas = aristas;
     }
 
-    public Nodo[] getNodos() {
+    public ArrayList<Nodo>  getNodos() {
         return nodos;
     }
 
-    public void setNodos(Nodo[] nodos) {
+    public void setNodos(ArrayList<Nodo>  nodos) {
         this.nodos = nodos;
     }
 
-    public Arista[] getAristas() {
+    public ArrayList<Arista> getAristas() {
         return aristas;
     }
 
-    public void setAristas(Arista[] aristas) {
+    public void setAristas(ArrayList<Arista> aristas) {
         this.aristas = aristas;
     }
 
