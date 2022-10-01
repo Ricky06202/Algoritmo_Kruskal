@@ -78,10 +78,8 @@ public class Grafo {
     }
 
     private void agregarNodosFaltantes(Arista arista){
-        if(!existeNodo(arista.getNodo1()))
-            agregarNodo(arista.getNodo1());
-        if(!existeNodo(arista.getNodo2()))
-            agregarNodo(arista.getNodo2());
+        agregarNodo(arista.getNodo1());
+        agregarNodo(arista.getNodo2());
     }
 
 }
