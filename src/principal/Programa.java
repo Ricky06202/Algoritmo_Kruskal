@@ -40,7 +40,12 @@ public class Programa {
     {
         String nombreNodo = Entrada.pedirTexto("Ingrese el nombre del nodo:","Ingresar Nodo");
         return new Nodo(nombreNodo);
+    }
 
+    public static Nodo crearNodo(String enumeracionNodo, String completarTitulo)
+    {
+        String nombreNodo = Entrada.pedirTexto("Ingrese el nombre del " + enumeracionNodo + " nodo:","Ingresar Nodo " + completarTitulo);
+        return new Nodo(nombreNodo);
     }
         
 }
