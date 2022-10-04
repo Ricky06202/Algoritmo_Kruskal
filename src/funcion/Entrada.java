@@ -42,11 +42,11 @@ public class Entrada {
         return valor;
     }
 
-    public static int opcionSiNo(String mensaje, String titulo){
+    public static boolean opcionSiNo(String mensaje, String titulo){
         while (true) {
             int valor = JOptionPane.showOptionDialog(null, mensaje, titulo, 0, 1, null, "Si, No".split(", "), null);
             if(valor != -1)
-                return valor; // 0 = Si, 1 = No, -1 = Cerrar la ventana
+                return valor == 0; // 0 = Si, 1 = No, -1 = Cerrar la ventana
             Salida.mensajeError("ERROR, DEBE ELEGIR UNA DE LAS OPCIONES", "ERROR OPCION INVALIDA");
         }
     }
