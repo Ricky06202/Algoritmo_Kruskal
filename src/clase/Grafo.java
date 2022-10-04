@@ -10,35 +10,21 @@ public class Grafo {
     private ArrayList<Arista> aristas = new ArrayList<Arista>();
 
     //!funciones para NODOS
-    public void agregarNodo(Nodo nodo){
-        if(!existeNodo(nodo)){
+    public void agregar(Nodo nodo){
+        if(!existe(nodo)){
             nodos.add(nodo);
             cantidadNodos++;
         }
     }
 
-    public void quitarNodo(Nodo nodo){
-        if(existeNodo(nodo)){
+    public void quitar(Nodo nodo){
+        if(existe(nodo)){
             nodos.remove(nodo);
             cantidadNodos--;
         }
     }
 
-    public void quitarPrimerNodo(){
-        if(nodos.size() > 0){
-            nodos.remove(0);
-            cantidadNodos--;
-        }
-    }
-
-    public void quitarUltimoNodo(){
-        if(nodos.size() > 0){
-            nodos.remove(nodos.size()-1);
-            cantidadNodos--;
-        }
-    }
-
-    private boolean existeNodo(Nodo actual){
+    private boolean existe(Nodo actual){
         for (Nodo nodo : nodos) {
             if(nodo.equals(actual))
                 return true;
@@ -47,29 +33,19 @@ public class Grafo {
     }
 
     //!Funciones para ARISTAS
-    public void agregarArista(Arista arista){
-        if(!existeArista(arista)){
+    public void agregar(Arista arista){
+        if(!existe(arista)){
             aristas.add(arista);
             agregarNodosFaltantes(arista);
         }
     }
 
-    public void quitarArista(Arista arista){
-        if(existeArista(arista))
+    public void quitar(Arista arista){
+        if(existe(arista))
             aristas.remove(arista);
     }
-
-    public void quitarPrimerArista(){
-        if(aristas.size() > 0)
-            aristas.remove(0);
-    }
-
-    public void quitarUltimoArista(){
-        if(aristas.size() > 0)
-            aristas.remove(aristas.size()-1);
-    }
     
-    private boolean existeArista(Arista actual){
+    private boolean existe(Arista actual){
         for (Arista arista : aristas) {
             if(arista.equals(actual))
                 return true;
@@ -78,8 +54,8 @@ public class Grafo {
     }
 
     private void agregarNodosFaltantes(Arista arista){
-        agregarNodo(arista.getNodo1());
-        agregarNodo(arista.getNodo2());
+        agregar(arista.getNodo1());
+        agregar(arista.getNodo2());
     }
 
 }
