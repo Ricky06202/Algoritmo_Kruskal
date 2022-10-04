@@ -1,6 +1,8 @@
 package clase;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 // definir las caracteristicas(variables) y sus metodos(funciones)
 
@@ -9,19 +11,27 @@ public class Grafo {
     private ArrayList<Nodo> nodos = new ArrayList<Nodo>();
     private ArrayList<Arista> aristas = new ArrayList<Arista>();
 
+    @Override
+    public String toString() {
+        return aristas.toString();
+    }
     //!funciones para NODOS
-    public void agregar(Nodo nodo){
-        if(!existe(nodo)){
+    public boolean agregar(Nodo nodo){
+        boolean existe = existe(nodo);
+        if(!existe){
             nodos.add(nodo);
             cantidadNodos++;
         }
+        return !existe;
     }
 
-    public void quitar(Nodo nodo){
-        if(existe(nodo)){
+    public boolean quitar(Nodo nodo){
+        boolean existe = existe(nodo);
+        if(existe){
             nodos.remove(nodo);
             cantidadNodos--;
         }
+        return existe;
     }
 
     private boolean existe(Nodo actual){
@@ -33,16 +43,20 @@ public class Grafo {
     }
 
     //!Funciones para ARISTAS
-    public void agregar(Arista arista){
-        if(!existe(arista)){
+    public boolean agregar(Arista arista){
+        boolean existe = existe(arista);
+        if(!existe){
             aristas.add(arista);
             agregarNodosFaltantes(arista);
         }
+        return !existe;
     }
 
-    public void quitar(Arista arista){
-        if(existe(arista))
+    public boolean quitar(Arista arista){
+        boolean existe = existe(arista);
+        if(existe)
             aristas.remove(arista);
+        return existe;
     }
     
     private boolean existe(Arista actual){
@@ -56,6 +70,16 @@ public class Grafo {
     private void agregarNodosFaltantes(Arista arista){
         agregar(arista.getNodo1());
         agregar(arista.getNodo2());
+    }
+
+    //!Funciones del Grafo
+    public void ordenarAristas(){
+        Collections.sort(aristas, new Comparator<Arista>() {
+            @Override
+            public int compare(Arista a1, Arista a2) {
+                return Float.valueOf(a1.getLongitud()).compareTo(Float.valueOf(a2.getLongitud()));
+            }
+        });
     }
 
 }

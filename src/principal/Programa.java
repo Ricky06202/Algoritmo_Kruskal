@@ -4,12 +4,19 @@ import clase.Arista;
 import clase.Grafo;
 import clase.Nodo;
 import funcion.Entrada;
+import funcion.Salida;
 
 //Aqui se tiene que conectar las demás clases
 public class Programa {
     public static void main(String[] args) 
     {
-        algoritmoDeKruskal();
+        Grafo g = new Grafo();
+        agregarAristaAlGrafo(g);
+        agregarAristaAlGrafo(g);
+        agregarAristaAlGrafo(g);
+        g.ordenarAristas();
+        Salida.mensaje(g.toString(), "Titulazo");
+        //algoritmoDeKruskal();
     }
 
     private static void algoritmoDeKruskal() {
@@ -52,23 +59,42 @@ public class Programa {
     }
 
     private static void agregarAristaAlGrafo(Grafo grafo) {
-        Nodo nodo1 = crearNodo("primer","de la Arista");
-        Nodo nodo2 = crearNodo("segundo","de la Arista");
-        float longitud = Entrada.pedirNumeroPositivo("Ingrese la longitud entre los nodos", "Ingresar Longitud de la Arista");
-        grafo.agregar(new Arista(nodo1, nodo2, longitud));
+        while (true) {
+            Nodo nodo1 = crearNodo("primer","de la Arista");
+            Nodo nodo2 = crearNodo("segundo","de la Arista");
+            float longitud = Entrada.pedirNumeroPositivo("Ingrese la longitud entre los nodos", "Ingresar Longitud de la Arista");
+            boolean sePudo = grafo.agregar(new Arista(nodo1, nodo2, longitud));
+            if(sePudo)
+                return;
+            Salida.mensajeError("ERROR, LA ARISTA INGRESADA YA EXISTE", "ERROR ARISTA EXISTENTE");
+        }
     }
 
     private static void agregarNodoAlGrafo(Grafo grafo) {
-        grafo.agregar(crearNodo());
+        while (true) {
+            boolean sePudo = grafo.agregar(crearNodo());
+            if(sePudo)
+                return;
+            Salida.mensajeError("ERROR, EL NODO INGRESADO YA EXISTE", "ERROR NODO EXISTENTE");
+        }
     }
 
-    public static Nodo crearNodo()
+    private static void agregarAlGrafo(Grafo grafo, Arista arista){
+        while (true) {
+            boolean sePudo = grafo.agregar(arista);
+            if(sePudo)
+                return;
+            Salida.mensajeError("ERROR, LA ARISTA INGRESADA YA EXISTE", "ERROR ARISTA EXISTENTE");
+        }
+    }
+
+    private static Nodo crearNodo()
     {
         String nombreNodo = Entrada.pedirTexto("Ingrese el nombre del nodo:","Ingresar Nodo");
         return new Nodo(nombreNodo);
     }
 
-    public static Nodo crearNodo(String enumeracionNodo, String completarTitulo)
+    private static Nodo crearNodo(String enumeracionNodo, String completarTitulo)
     {
         String nombreNodo = Entrada.pedirTexto("Ingrese el nombre del " + enumeracionNodo + " nodo:","Ingresar Nodo " + completarTitulo);
         return new Nodo(nombreNodo);
