@@ -11,17 +11,15 @@ public class Nodo {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) 
+    {
         if(this == obj) return true;
-        if(obj instanceof Nodo){
+        if(obj instanceof Nodo)
+        {
             Nodo otroNodo = (Nodo)obj;
             return nombre.equalsIgnoreCase(otroNodo.nombre);
         } 
         return false; 
-    }
-
-    public void setNombre(String nombre){
-        this.nombre=nombre;
     }
 
     public String getNombre(){
