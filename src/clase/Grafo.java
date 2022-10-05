@@ -15,10 +15,10 @@ public class Grafo {
     public String toString() {
         return String.format("Nodos = (%s)\nAristas = (%s)", 
         nodos.toString().substring(1, nodos.toString().length()-1),
-        cadenaAristas());
+        cadenaAristas(aristas));
     }
 
-    private String cadenaAristas(){
+    private String cadenaAristas(ArrayList<Arista> aristas){
         String resultante = "";
         int conteo = 0;
         for (Arista arista : aristas) {
@@ -26,7 +26,7 @@ public class Grafo {
                 resultante += arista;
             else
                 resultante += ", " + arista;
-            if(++conteo % 5 == 0)
+            if(++conteo % 5 == 0 && conteo != aristas.size())
                 resultante += "\n";
         }
         return resultante;
@@ -103,6 +103,45 @@ public class Grafo {
                 return n1.getNombre().compareTo(n2.getNombre());
             } 
         });
+    }
+
+    public String encontrarCamino(){
+        ordenar();
+        ArrayList<Arista> camino = new ArrayList<>();
+        for (Arista arista : aristas) {
+            camino.add(arista);
+            detectarCiclo(camino, arista);
+            if(camino.size() == cantidadNodos-1)
+                break;
+        }
+        return cadenaAristas(camino);
+    }
+
+    private void detectarCiclo(ArrayList<Arista> camino, Arista arista) {
+        Nodo primerNodo = arista.getNodo1();
+        for (int i = 0; i < 2; i++) {
+            if(i == 1)
+                primerNodo = arista.RegresarOpuesto(primerNodo);
+            Nodo siguiente = arista.RegresarOpuesto(primerNodo);
+            Arista encontrada = buscarArista(camino, arista, siguiente);
+            while(encontrada != null){
+                siguiente = encontrada.RegresarOpuesto(siguiente);
+                if(siguiente.equals(primerNodo)){
+                    camino.remove(arista);
+                    break;
+                }
+                encontrada = buscarArista(camino, encontrada, siguiente);
+            }  
+        }
+    }
+
+    private Arista buscarArista(ArrayList<Arista> camino, Arista actual, Nodo nodo){
+        for (Arista arista : camino) {
+            if(arista.tieneNodo(nodo) && !arista.equals(actual)){
+                return arista;
+            }
+        }
+        return null;
     }
 
 }

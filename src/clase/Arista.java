@@ -23,7 +23,7 @@ public class Arista {
     }
 
     public Nodo RegresarOpuesto(Nodo actual){
-        return actual != nodo1 ? nodo1 : nodo2;
+        return !actual.equals(nodo1) ? nodo1 : nodo2;
     }
 
     @Override
@@ -38,6 +38,10 @@ public class Arista {
                 return true;
         }
         return false;
+    }
+
+    public boolean tieneNodo(Nodo nodo){
+        return nodo.equals(nodo1) || nodo.equals(nodo2);
     }
 
     public float getLongitud(){

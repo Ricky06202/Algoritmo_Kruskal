@@ -7,7 +7,7 @@ public class Nodo {
     private String nombre;
 
     public Nodo(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
     }
 
     @Override

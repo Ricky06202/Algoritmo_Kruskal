@@ -10,46 +10,47 @@ import funcion.Salida;
 public class Programa {
     public static void main(String[] args) 
     {
-        Grafo g = new Grafo();
-        agregarAristaAlGrafo(g);
-        agregarAristaAlGrafo(g);
-        agregarAristaAlGrafo(g);
-        g.ordenar();
-        Salida.mensaje(g.toString(), "Titulazo");
-        //algoritmoDeKruskal();
+        algoritmoDeKruskal();
     }
 
     private static void algoritmoDeKruskal() {
+        Grafo grafo = new Grafo();
         while (true) {
-            Grafo grafo = new Grafo();
             int opcion = elegirOpcion();
             realizarAccion(grafo, opcion);
+            if(opcion == 1)
+                grafo = new Grafo();
         }
     }
 
     private static int elegirOpcion() {
-        return Entrada.opcionMultiple("¿Qué desea agregar?","Creación del Grafo", "Nodo,Arista,Terminar".split(","));
+        return Entrada.opcionMultiple("¿Qué desea agregar?","Creación del Grafo", "Arista,Calcular Camino".split(","));
     }
 
     private static void realizarAccion(Grafo grafo, int opcion) {
         switch (opcion) 
         {
-            case 0: //Nodo
-                agregarNodoAlGrafo(grafo);
-                break;
+            // case 1: //Nodo
+            //     agregarNodoAlGrafo(grafo);
+            //     break;
 
-            case 1: //Arista
+            case 0: //Arista
                 agregarAristaAlGrafo(grafo);
                 break;
-            case 2: //Terminar
-            
-                
+            case 1: //Terminar
+                calcularCaminoMasCorto(grafo);
                 break;
         
             default: // Salir 
                 verificarSalida();
                 break;
         }
+    }
+
+    private static void calcularCaminoMasCorto(Grafo grafo) {
+        String camino = grafo.encontrarCamino();
+        Salida.mensaje(String.format("Para Este Grafo\n\n%s\n\nEncontramos Este Camino Como el Mas Corto\n\nP = (%s)",
+        grafo, camino), "Camino Mas Corto Encontrado");
     }
 
     private static void verificarSalida() {
@@ -70,29 +71,20 @@ public class Programa {
         }
     }
 
-    private static void agregarNodoAlGrafo(Grafo grafo) {
-        while (true) {
-            boolean sePudo = grafo.agregar(crearNodo());
-            if(sePudo)
-                return;
-            Salida.mensajeError("ERROR, EL NODO INGRESADO YA EXISTE", "ERROR NODO EXISTENTE");
-        }
-    }
+    // private static void agregarNodoAlGrafo(Grafo grafo) {
+    //     while (true) {
+    //         boolean sePudo = grafo.agregar(crearNodo());
+    //         if(sePudo)
+    //             return;
+    //         Salida.mensajeError("ERROR, EL NODO INGRESADO YA EXISTE", "ERROR NODO EXISTENTE");
+    //     }
+    // }
 
-    private static void agregarAlGrafo(Grafo grafo, Arista arista){
-        while (true) {
-            boolean sePudo = grafo.agregar(arista);
-            if(sePudo)
-                return;
-            Salida.mensajeError("ERROR, LA ARISTA INGRESADA YA EXISTE", "ERROR ARISTA EXISTENTE");
-        }
-    }
-
-    private static Nodo crearNodo()
-    {
-        String nombreNodo = Entrada.pedirTexto("Ingrese el nombre del nodo:","Ingresar Nodo");
-        return new Nodo(nombreNodo);
-    }
+    // private static Nodo crearNodo()
+    // {
+    //     String nombreNodo = Entrada.pedirTexto("Ingrese el nombre del nodo:","Ingresar Nodo");
+    //     return new Nodo(nombreNodo);
+    // }
 
     private static Nodo crearNodo(String enumeracionNodo, String completarTitulo)
     {
