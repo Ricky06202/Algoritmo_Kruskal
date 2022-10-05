@@ -14,7 +14,7 @@ public class Programa {
         agregarAristaAlGrafo(g);
         agregarAristaAlGrafo(g);
         agregarAristaAlGrafo(g);
-        g.ordenarAristas();
+        g.ordenar();
         Salida.mensaje(g.toString(), "Titulazo");
         //algoritmoDeKruskal();
     }
