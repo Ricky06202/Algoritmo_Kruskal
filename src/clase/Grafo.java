@@ -13,7 +13,23 @@ public class Grafo {
 
     @Override
     public String toString() {
-        return aristas.toString();
+        return String.format("Nodos = (%s)\nAristas = (%s)", 
+        nodos.toString().substring(1, nodos.toString().length()-1),
+        cadenaAristas());
+    }
+
+    private String cadenaAristas(){
+        String resultante = "";
+        int conteo = 0;
+        for (Arista arista : aristas) {
+            if(conteo == 0)
+                resultante += arista;
+            else
+                resultante += ", " + arista;
+            if(++conteo % 5 == 0)
+                resultante += "\n";
+        }
+        return resultante;
     }
     //!funciones para NODOS
     public boolean agregar(Nodo nodo){
@@ -73,12 +89,19 @@ public class Grafo {
     }
 
     //!Funciones del Grafo
-    public void ordenarAristas(){
+    public void ordenar(){
         Collections.sort(aristas, new Comparator<Arista>() {
             @Override
             public int compare(Arista a1, Arista a2) {
                 return Float.valueOf(a1.getLongitud()).compareTo(Float.valueOf(a2.getLongitud()));
             }
+        });
+        Collections.sort(nodos, new Comparator<Nodo>() {
+
+            @Override
+            public int compare(Nodo n1, Nodo n2) {
+                return n1.getNombre().compareTo(n2.getNombre());
+            } 
         });
     }
 

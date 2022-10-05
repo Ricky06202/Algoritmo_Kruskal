@@ -13,6 +13,11 @@ public class Arista {
         this.longitud = longitud;
     }
 
+    @Override
+    public String toString() {
+        return String.format("[%s, %.2f, %s]", nodo1.toString(), longitud, nodo2.toString());
+    }
+
     public boolean esBucle(){
         return nodo1.equals(nodo2);
     }
